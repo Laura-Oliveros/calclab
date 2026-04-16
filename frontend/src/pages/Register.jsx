@@ -11,6 +11,8 @@ export default function Register() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -51,68 +53,69 @@ export default function Register() {
   }
 
   const pageStyle = {
-  minHeight: "100vh",
-  background:
-    "linear-gradient(180deg, #06122f 0%, #091a44 55%, #07122d 100%)",
-  padding: window.innerWidth <= 768 ? "20px 14px" : "40px 20px",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
+    minHeight: "100vh",
+    background:
+      "linear-gradient(180deg, #06122f 0%, #091a44 55%, #07122d 100%)",
+    padding: isMobile ? "20px 14px" : "40px 20px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
 
   const cardStyle = {
-  width: "100%",
-  maxWidth: "560px",
-  background: "rgba(20, 31, 61, 0.92)",
-  border: "1px solid rgba(108, 138, 255, 0.18)",
-  borderRadius: window.innerWidth <= 768 ? "18px" : "24px",
-  padding: window.innerWidth <= 768 ? "24px 18px" : "36px 30px",
-  boxShadow: "0 24px 60px rgba(0, 0, 0, 0.35)",
-  backdropFilter: "blur(10px)",
-};
+    width: "100%",
+    maxWidth: "560px",
+    background: "rgba(20, 31, 61, 0.92)",
+    border: "1px solid rgba(108, 138, 255, 0.18)",
+    borderRadius: isMobile ? "18px" : "24px",
+    padding: isMobile ? "24px 18px" : "36px 30px",
+    boxShadow: "0 24px 60px rgba(0, 0, 0, 0.35)",
+    backdropFilter: "blur(10px)",
+  };
 
   const titleStyle = {
-  color: "#ffffff",
-  fontSize: window.innerWidth <= 768 ? "40px" : "52px",
-  fontWeight: 800,
-  textAlign: "center",
-  margin: "0 0 12px 0",
-  lineHeight: 1.05,
-};
+    color: "#ffffff",
+    fontSize: isMobile ? "40px" : "52px",
+    fontWeight: 800,
+    textAlign: "center",
+    margin: "0 0 12px 0",
+    lineHeight: 1.05,
+  };
 
   const subtitleStyle = {
-  color: "#d9e4ff",
-  fontSize: window.innerWidth <= 768 ? "15px" : "16px",
-  textAlign: "center",
-  margin: "0 0 24px 0",
-};
+    color: "#d9e4ff",
+    fontSize: isMobile ? "15px" : "16px",
+    textAlign: "center",
+    margin: "0 0 24px 0",
+    lineHeight: 1.5,
+  };
 
   const inputStyle = {
-  width: "100%",
-  padding: window.innerWidth <= 768 ? "16px 14px" : "18px 16px",
-  borderRadius: "14px",
-  border: "1px solid rgba(146, 168, 255, 0.18)",
-  background: "rgba(255,255,255,0.04)",
-  color: "#ffffff",
-  fontSize: window.innerWidth <= 768 ? "16px" : "18px",
-  outline: "none",
-  boxSizing: "border-box",
-  marginBottom: "16px",
-};
+    width: "100%",
+    padding: isMobile ? "16px 14px" : "18px 16px",
+    borderRadius: "14px",
+    border: "1px solid rgba(146, 168, 255, 0.18)",
+    background: "rgba(255,255,255,0.04)",
+    color: "#ffffff",
+    fontSize: isMobile ? "16px" : "18px",
+    outline: "none",
+    boxSizing: "border-box",
+    marginBottom: "16px",
+  };
 
   const buttonStyle = {
-  width: "100%",
-  padding: window.innerWidth <= 768 ? "15px" : "16px",
-  border: "none",
-  borderRadius: "14px",
-  background: "linear-gradient(90deg, #2f67f3 0%, #7b3ff2 100%)",
-  color: "#ffffff",
-  fontSize: window.innerWidth <= 768 ? "17px" : "18px",
-  fontWeight: 700,
-  cursor: "pointer",
-  marginTop: "10px",
-  opacity: loading ? 0.7 : 1,
-};
+    width: "100%",
+    padding: isMobile ? "15px" : "16px",
+    border: "none",
+    borderRadius: "14px",
+    background: "linear-gradient(90deg, #2f67f3 0%, #7b3ff2 100%)",
+    color: "#ffffff",
+    fontSize: isMobile ? "17px" : "18px",
+    fontWeight: 700,
+    cursor: "pointer",
+    marginTop: "10px",
+    opacity: loading ? 0.7 : 1,
+  };
 
   const errorStyle = {
     color: "#ff6b6b",
@@ -124,7 +127,7 @@ export default function Register() {
     textAlign: "center",
     marginTop: "22px",
     color: "#e4ebff",
-    fontSize: "16px",
+    fontSize: isMobile ? "15px" : "16px",
   };
 
   const linkStyle = {
