@@ -1,36 +1,26 @@
 const db = require("../config/db");
 
-function createUser(username, passwordHash) {
-  return new Promise((resolve, reject) => {
-    const sql = `INSERT INTO users (username, password_hash) VALUES (?, ?)`;
-    db.run(sql, [username, passwordHash], function (err) {
-      if (err) return reject(err);
-      resolve({
-        id: this.lastID,
-        username,
-      });
-    });
-  });
+async function createUser(username, passwordHash) {
+  const sql = `
+    INSERT INTO users (username, password_hash)
+    VALUES ($1, $2)
+    RETURNING id, username
+  `;
+
+  const result = await db.query(sql, [username, passwordHash]);
+  return result.rows[0];
 }
 
-function findUserByUsername(username) {
-  return new Promise((resolve, reject) => {
-    const sql = `SELECT * FROM users WHERE username = ?`;
-    db.get(sql, [username], (err, row) => {
-      if (err) return reject(err);
-      resolve(row || null);
-    });
-  });
+async function findUserByUsername(username) {
+  const sql = `SELECT * FROM users WHERE username = $1`;
+  const result = await db.query(sql, [username]);
+  return result.rows[0] || null;
 }
 
-function findUserById(id) {
-  return new Promise((resolve, reject) => {
-    const sql = `SELECT id, username, created_at FROM users WHERE id = ?`;
-    db.get(sql, [id], (err, row) => {
-      if (err) return reject(err);
-      resolve(row || null);
-    });
-  });
+async function findUserById(id) {
+  const sql = `SELECT id, username, created_at FROM users WHERE id = $1`;
+  const result = await db.query(sql, [id]);
+  return result.rows[0] || null;
 }
 
 module.exports = {
